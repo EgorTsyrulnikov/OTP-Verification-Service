@@ -75,5 +75,5 @@
    curl -X POST http://localhost:8080/api/otp/validate -H "Authorization: Bearer <TOKEN>" -H "Content-Type: application/json" -d "{\"operationId\":\"op_1\", \"code\":\"<КОД_ИЗ_ФАЙЛА>\"}"
    ```
    *Ожидаемый ответ:* `{"isValid": true}`.
-6. **Тест Telegram:** В запросе генерации укажите `channel: TELEGRAM`, а в качестве `destination` — реальный `chat_id` получателя. (В `telegram.properties` уже вшит тестовый токен бота, поэтому для тестирования достаточно написать боту и узнать свой chat_id).
+6. **Тест Telegram:** В запросе генерации укажите `channel: TELEGRAM`, а в качестве `destination` — реальный `chat_id` получателя. (В `telegram.properties` уже вшит тестовый токен бота **@sfsirnyabot**. Для тестирования достаточно написать этому боту любое сообщение, узнать свой `chat_id` через метод `getUpdates` Telegram API, и передать его в поле `destination`).
 7. **Тест фоновой очистки:** Сгенерируйте код, подождите 5 минут (дефолтное время жизни), и убедитесь в базе данных, что его статус сменился с `ACTIVE` на `EXPIRED` (очистку производит планировщик `ExpirationTask`).
